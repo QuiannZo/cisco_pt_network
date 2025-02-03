@@ -1,0 +1,198 @@
+Current configuration : 5325 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+username admin privilege 15 secret 5 $1$mERr$GvDaTJK9lhdXRUPWKA74O0
+!
+!
+license udi pid CISCO2911/K9 sn FTX152458OA-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+ip domain-name ecci.com
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ description Interfaz que conecta con Router1
+ ip address 163.178.10.18 255.255.255.252
+ ip nat outside
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1.101
+ description Interfaz conectada a la VLAN 101
+ encapsulation dot1Q 101
+ ip address 10.1.101.1 255.255.255.0
+ ip access-group 101 in
+ ip nat inside
+!
+interface GigabitEthernet0/1.102
+ description Interfaz conectada a la VLAN 102
+ encapsulation dot1Q 102
+ ip address 10.1.102.1 255.255.255.0
+ ip access-group 102 in
+ ip nat inside
+!
+interface GigabitEthernet0/1.103
+ description Interfaz conectada a la VLAN 103
+ encapsulation dot1Q 103
+ ip address 10.1.103.1 255.255.255.0
+ ip access-group 103 in
+ ip nat inside
+!
+interface GigabitEthernet0/1.104
+ description Interfaz conectada a la VLAN 104
+ encapsulation dot1Q 104
+ ip address 10.1.104.1 255.255.255.0
+ ip access-group 104 in
+ ip nat inside
+!
+interface GigabitEthernet0/1.105
+ description Interfaz conectada a la VLAN105
+ encapsulation dot1Q 105
+ ip address 163.178.104.73 255.255.255.248
+ ip access-group 198 in
+!
+interface GigabitEthernet0/1.106
+ description Interfaz conectada a la VLAN 106
+ encapsulation dot1Q 106
+ ip address 10.1.106.1 255.255.255.0
+ ip access-group 106 in
+ ip nat inside
+!
+interface GigabitEthernet0/1.201
+ description Interfaz conectada a la VLAN 201
+ encapsulation dot1Q 201
+ ip address 10.1.201.1 255.255.255.0
+ ip access-group 199 in
+ ip nat inside
+!
+interface GigabitEthernet0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip nat pool ECCI_NAT 163.178.104.65 163.178.104.70 netmask 255.255.255.248
+ip nat inside source list 10 pool ECCI_NAT
+ip classless
+ip route 0.0.0.0 0.0.0.0 163.178.10.17 
+!
+ip flow-export version 9
+!
+!
+access-list 1 permit any
+access-list 10 permit 10.1.101.0 0.0.0.255
+access-list 10 permit 10.1.102.0 0.0.0.255
+access-list 10 permit 10.1.103.0 0.0.0.255
+access-list 10 permit 10.1.104.0 0.0.0.255
+access-list 10 permit 10.1.201.0 0.0.0.255
+access-list 10 permit 10.1.106.0 0.0.0.255
+access-list 101 deny ip 10.1.101.0 0.0.0.255 10.1.102.0 0.0.0.255
+access-list 101 deny ip 10.1.101.0 0.0.0.255 10.1.103.0 0.0.0.255
+access-list 101 deny ip 10.1.101.0 0.0.0.255 10.1.104.0 0.0.0.255
+access-list 101 deny ip 10.1.101.0 0.0.0.255 10.1.106.0 0.0.0.255
+access-list 101 deny ip 10.1.101.0 0.0.0.255 10.1.201.0 0.0.0.255
+access-list 101 permit ip any any
+access-list 102 deny ip 10.1.102.0 0.0.0.255 10.1.101.0 0.0.0.255
+access-list 102 deny ip 10.1.102.0 0.0.0.255 10.1.103.0 0.0.0.255
+access-list 102 deny ip 10.1.102.0 0.0.0.255 10.1.104.0 0.0.0.255
+access-list 102 deny ip 10.1.102.0 0.0.0.255 10.1.106.0 0.0.0.255
+access-list 102 deny ip 10.1.102.0 0.0.0.255 10.1.201.0 0.0.0.255
+access-list 102 permit ip any any
+access-list 103 deny ip 10.1.103.0 0.0.0.255 10.1.101.0 0.0.0.255
+access-list 103 deny ip 10.1.103.0 0.0.0.255 10.1.102.0 0.0.0.255
+access-list 103 deny ip 10.1.103.0 0.0.0.255 10.1.104.0 0.0.0.255
+access-list 103 deny ip 10.1.103.0 0.0.0.255 10.1.106.0 0.0.0.255
+access-list 103 deny ip 10.1.103.0 0.0.0.255 10.1.201.0 0.0.0.255
+access-list 103 permit ip any any
+access-list 104 deny ip 10.1.104.0 0.0.0.255 10.1.101.0 0.0.0.255
+access-list 104 deny ip 10.1.104.0 0.0.0.255 10.1.102.0 0.0.0.255
+access-list 104 deny ip 10.1.104.0 0.0.0.255 10.1.103.0 0.0.0.255
+access-list 104 deny ip 10.1.104.0 0.0.0.255 10.1.106.0 0.0.0.255
+access-list 104 deny ip 10.1.104.0 0.0.0.255 10.1.201.0 0.0.0.255
+access-list 199 deny ip 10.1.201.0 0.0.0.255 10.1.101.0 0.0.0.255
+access-list 199 deny ip 10.1.201.0 0.0.0.255 10.1.102.0 0.0.0.255
+access-list 199 deny ip 10.1.201.0 0.0.0.255 10.1.103.0 0.0.0.255
+access-list 199 deny ip 10.1.201.0 0.0.0.255 10.1.104.0 0.0.0.255
+access-list 199 deny ip 10.1.201.0 0.0.0.255 10.1.106.0 0.0.0.255
+access-list 199 permit ip any any
+access-list 198 permit tcp any host 163.178.104.74 eq www
+access-list 198 permit tcp host 10.1.106.2 any eq 22
+access-list 198 permit tcp host 163.178.104.74 any established
+access-list 198 deny icmp any host 163.178.104.74
+access-list 198 permit tcp host 163.178.104.74 any eq www
+access-list 198 permit ip any host 163.178.104.75
+access-list 198 permit ip host 163.178.104.75 any
+access-list 106 deny ip 10.1.106.0 0.0.0.255 10.1.101.0 0.0.0.255
+access-list 106 deny ip 10.1.106.0 0.0.0.255 10.1.102.0 0.0.0.255
+access-list 106 deny ip 10.1.106.0 0.0.0.255 10.1.103.0 0.0.0.255
+access-list 106 deny ip 10.1.106.0 0.0.0.255 10.1.104.0 0.0.0.255
+access-list 106 deny ip 10.1.106.0 0.0.0.255 10.1.201.0 0.0.0.255
+access-list 106 permit ip any any
+ip access-list standard SSH_ACCESS
+ permit host 10.1.106.2
+ deny any
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0
+ access-class SSH_ACCESS in
+ login local
+ transport input ssh
+line vty 1 4
+ access-class SSH_ACCESS in
+ login
+line vty 5 15
+ access-class SSH_ACCESS in
+ login
+!
+!
+!
+end

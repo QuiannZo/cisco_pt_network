@@ -1,0 +1,24 @@
+Planificación de la Red
+
+La red principal 163.178.10.0/24 se subdivide en las siguientes subredes:
+
+ /29 para el segmento METICS.
+ /29 para el segmento del Centro de Informática.
+ /30 para la interfaz del router que se conecta a la ECCI.
+Cuatro /30 en el anillo interno.
+
+El subnetting:
+
+Segmento: METICS Máscara: /29 Tamaño del Bloque: 8 IPs Identificador de la Red: 163.178.10.0 Rango de IPs Utilizables: 163.178.10.1 - 163.178.10.6 Dirección de Broadcast: 163.178.10.7
+
+Segmento: Centro de Informática Máscara: /29 Tamaño del Bloque: 8 IPs Identificador de la Red: 163.178.10.8 Rango de IPs Utilizables: 163.178.10.9 - 163.178.10.14 Dirección de Broadcast: 163.178.10.15
+
+Segmento: Interfaz hacia ECCI Máscara: /30 Tamaño del Bloque: 4 IPs Identificador de la Red: 163.178.10.16 Rango de IPs Utilizables: 163.178.10.17 - 163.178.10.18 Dirección de Broadcast: 163.178.10.19
+
+Segmento: Subred A Máscara: /30 Tamaño del Bloque: 4 IPs Identificador de la Red: 163.178.10.20 Rango de IPs Utilizables: 163.178.10.21 - 163.178.10.22 Dirección de Broadcast: 163.178.10.23
+
+Segmento: Subred B Máscara: /30 Tamaño del Bloque: 4 IPs Identificador de la Red: 163.178.10.24 Rango de IPs Utilizables: 163.178.10.25 - 163.178.10.26 Dirección de Broadcast: 163.178.10.27
+
+Segmento: Subred C Máscara: /30 Tamaño del Bloque: 4 IPs Identificador de la Red: 163.178.10.28 Rango de IPs Utilizables: 163.178.10.29 - 163.178.10.30 Dirección de Broadcast: 163.178.10.31
+
+Segmento: Subred D Máscara: /30 Tamaño del Bloque: 4 IPs Identificador de la Red: 163.178.10.32 Rango de IPs Utilizables: 163.178.10.33 - 163.178.10.34 Dirección de Broadcast: 163.178.10.35
